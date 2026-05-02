@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   description: "Next Projects Template description",
 };
 
+import { Navbar } from "@/components/modules/Navbar";
+import { Toaster } from "@/components/ui/sonner";
+import { Suspense } from "react";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +31,17 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <Suspense
+          fallback={<div className="bg-background h-16 w-full border-b" />}
+        >
+          <Navbar />
+        </Suspense>
+        <Suspense fallback={<div className="flex-1" />}>{children}</Suspense>
+        <Suspense fallback={null}>
+          <Toaster />
+        </Suspense>
+      </body>
     </html>
   );
 }
