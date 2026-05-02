@@ -1,0 +1,4 @@
+pnpm run lint:fix
+pnpm run lint
+# pnpm run build
+pnpm lint-staged
